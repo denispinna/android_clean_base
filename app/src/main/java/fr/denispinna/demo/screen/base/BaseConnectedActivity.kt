@@ -8,17 +8,17 @@ abstract class BaseConnectedActivity<MV : ConnectedViewModel> : BaseActivity<MV>
 
     abstract fun showLoading(show: Boolean)
 
-    abstract fun showError(throwable: Throwable)
+    abstract fun showError(throwable: Throwable?)
 
     abstract fun showErrorMessage(message: String?)
 
     override fun initViewModel() {
         super.initViewModel()
         viewModel.error.observe(this, Observer { value ->
-            value?.let { showError(it) }
+            showError(value)
         })
         viewModel.errorMessage.observe(this, Observer { value ->
-            value?.let { showErrorMessage(it) }
+            showErrorMessage(value)
         })
         viewModel.loading.observe(this, Observer { value ->
             showLoading(value)

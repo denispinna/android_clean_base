@@ -111,19 +111,20 @@ class LoginActivity : BaseConnectedActivity<LoginViewModel>() {
         }
     }
 
-    override fun showError(throwable: Throwable) {
-        btLogin.setText(R.string.retry_button_text)
-        showLoading(false)
-
+    override fun showError(throwable: Throwable?) {
+        throwable?.let {
+            btLogin.setText(R.string.retry_button_text)
+            showLoading(false)
+        }
     }
 
     override fun showErrorMessage(message: String?) {
         if(message!= null) {
             tvError.visibility = VISIBLE
+            tvError.text = message
         } else {
             tvError.visibility = GONE
         }
-        tvError.text = message
     }
     override fun initViewModel() {
         super.initViewModel()
