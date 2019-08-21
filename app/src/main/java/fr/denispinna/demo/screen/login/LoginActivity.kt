@@ -119,13 +119,14 @@ class LoginActivity : BaseConnectedActivity<LoginViewModel>() {
     }
 
     override fun showErrorMessage(message: String?) {
-        if(message!= null) {
+        message?.let {
             tvError.visibility = VISIBLE
             tvError.text = message
-        } else {
+        } ?: run {
             tvError.visibility = GONE
         }
     }
+
     override fun initViewModel() {
         super.initViewModel()
         val loginViewModel = viewModel as LoginViewModel
