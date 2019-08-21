@@ -19,8 +19,6 @@ import fr.denispinna.demo.screen.home.HomeActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import fr.denispinna.demo.R
-import fr.denispinna.demo.screen.base.viewmodel.BaseViewModel
-import fr.denispinna.demo.screen.base.viewmodel.ConnectedViewModel
 import javax.inject.Inject
 
 class LoginActivity : BaseConnectedActivity<LoginViewModel>() {
@@ -130,7 +128,7 @@ class LoginActivity : BaseConnectedActivity<LoginViewModel>() {
     override fun initViewModel() {
         super.initViewModel()
         val loginViewModel = viewModel as LoginViewModel
-        loginViewModel.loginSuccssResponse.observe(this, Observer { value ->
+        loginViewModel.loginSuccessResponse.observe(this, Observer { value ->
             val successMessage = String.format("Token : %s \n %s", value.token, value.message)
 
             loginViewModel.toastMessage.value = successMessage
@@ -153,8 +151,7 @@ class LoginActivity : BaseConnectedActivity<LoginViewModel>() {
 
     @OnClick(R.id.bt_login)
     internal fun login() {
-        val loginViewModel = viewModel as LoginViewModel
-        loginViewModel.errorMessage.value = null
+        viewModel.errorMessage.value = null
 
         if (isLoading) {
             loginController.cancelLogin()

@@ -1,10 +1,10 @@
 package fr.denispinna.demo.screen.base.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import fr.denispinna.demo.component.SingleLiveEvent
 
 open class BaseViewModel: ViewModel() {
-    val toastMessage: MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
+    val toastMessage by lazy {
+        SingleLiveEvent<String>()
     }
 }

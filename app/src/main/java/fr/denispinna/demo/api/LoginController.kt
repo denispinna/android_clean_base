@@ -24,7 +24,7 @@ internal class LoginController(
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 { result ->
-                                    viewModel.loginSuccssResponse.value = result
+                                    viewModel.loginSuccessResponse.value = result
                                     Log.d(TAG, result.toString())
                                 },
                                 { error ->
